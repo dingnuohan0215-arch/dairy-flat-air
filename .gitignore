@@ -1,6 +1,7 @@
 .next
 node_modules
 .home
+.gh
 .npm-cache
 .tools
 .env
