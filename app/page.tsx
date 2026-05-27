@@ -64,7 +64,6 @@ type RouteGuide = {
   aircraft: string;
   advice: string;
   windowDays: number;
-  service: string;
 };
 
 type SearchCriteria = {
@@ -87,22 +86,20 @@ const routeGuides: RouteGuide[] = [
   {
     origin: "NZNE",
     destination: "YSSY",
-    label: "Sydney prestige",
+    label: "Sydney service",
     frequency: "Outbound every Friday, return every Sunday",
     aircraft: "SyberJet SJ30i, 6 seats",
-    advice: "Sydney is a weekly route, so a 35 day search is the easiest way to see options.",
-    windowDays: 35,
-    service: "International"
+    advice: "This is a weekly route. A five week search usually shows enough choices.",
+    windowDays: 35
   },
   {
     origin: "YSSY",
     destination: "NZNE",
-    label: "Sydney return",
+    label: "Sydney to Dairy Flat",
     frequency: "Return service every Sunday",
     aircraft: "SyberJet SJ30i, 6 seats",
-    advice: "Use a five week window to avoid missing the once-weekly Sunday return.",
-    windowDays: 35,
-    service: "International"
+    advice: "The Sydney return runs on Sundays, so search several weeks at once.",
+    windowDays: 35
   },
   {
     origin: "NZNE",
@@ -110,19 +107,17 @@ const routeGuides: RouteGuide[] = [
     label: "Rotorua shuttle",
     frequency: "Two flights each weekday",
     aircraft: "Cirrus SF50 Vision Jet, 4 seats",
-    advice: "Rotorua has the most frequent service, so a one week search is usually enough.",
-    windowDays: 7,
-    service: "Weekday shuttle"
+    advice: "Rotorua is frequent, so one week is normally enough.",
+    windowDays: 7
   },
   {
     origin: "NZRO",
     destination: "NZNE",
-    label: "Rotorua return",
+    label: "Rotorua to Dairy Flat",
     frequency: "Two return flights each weekday",
     aircraft: "Cirrus SF50 Vision Jet, 4 seats",
-    advice: "Morning and evening returns run on weekdays for commuter-style travel.",
-    windowDays: 7,
-    service: "Weekday shuttle"
+    advice: "There are morning and evening return services on weekdays.",
+    windowDays: 7
   },
   {
     origin: "NZNE",
@@ -130,19 +125,17 @@ const routeGuides: RouteGuide[] = [
     label: "Great Barrier",
     frequency: "Outbound Monday, Wednesday, Friday",
     aircraft: "Cirrus SF50 Vision Jet, 4 seats",
-    advice: "Search at least two weeks for this route because seats are limited.",
-    windowDays: 14,
-    service: "Island connection"
+    advice: "Search at least two weeks because this route only runs three times a week.",
+    windowDays: 14
   },
   {
     origin: "NZGB",
     destination: "NZNE",
-    label: "Great Barrier return",
+    label: "Great Barrier to Dairy Flat",
     frequency: "Return Tuesday, Thursday, Saturday",
     aircraft: "Cirrus SF50 Vision Jet, 4 seats",
-    advice: "Return flights run the day after the outbound pattern.",
-    windowDays: 14,
-    service: "Island connection"
+    advice: "Return flights run on the day after the outbound pattern.",
+    windowDays: 14
   },
   {
     origin: "NZNE",
@@ -151,18 +144,16 @@ const routeGuides: RouteGuide[] = [
     frequency: "Outbound Tuesday and Friday",
     aircraft: "HondaJet Elite, 5 seats",
     advice: "Chatham time is GMT+12:45, so check both the local departure and arrival times.",
-    windowDays: 21,
-    service: "Remote island"
+    windowDays: 21
   },
   {
     origin: "NZCI",
     destination: "NZNE",
-    label: "Chatham return",
+    label: "Chatham Islands to Dairy Flat",
     frequency: "Return Wednesday and Saturday",
     aircraft: "HondaJet Elite, 5 seats",
-    advice: "The return schedule uses Chatham local time and a slightly longer westbound duration.",
-    windowDays: 21,
-    service: "Remote island"
+    advice: "The return schedule uses Chatham local time and a longer westbound duration.",
+    windowDays: 21
   },
   {
     origin: "NZNE",
@@ -170,19 +161,17 @@ const routeGuides: RouteGuide[] = [
     label: "Lake Tekapo",
     frequency: "Outbound every Monday",
     aircraft: "HondaJet Elite, 5 seats",
-    advice: "Lake Tekapo is weekly, so use a 28 day window for a useful list.",
-    windowDays: 28,
-    service: "Scenic connection"
+    advice: "This route is weekly, so a four week search gives a useful list.",
+    windowDays: 28
   },
   {
     origin: "NZTL",
     destination: "NZNE",
-    label: "Lake Tekapo return",
+    label: "Lake Tekapo to Dairy Flat",
     frequency: "Return every Tuesday",
     aircraft: "HondaJet Elite, 5 seats",
     advice: "Tuesday returns pair with the Monday outbound service.",
-    windowDays: 28,
-    service: "Scenic connection"
+    windowDays: 28
   }
 ];
 
@@ -403,33 +392,20 @@ export default function Home() {
       <section className="hero">
         <div className="hero-copy">
           <p className="eyebrow">Dairy Flat Air</p>
-          <h1>Regional flight booking desk</h1>
+          <h1>Dairy Flat Air bookings</h1>
           <p className="hero-lede">
-            Search real calendar services from Dairy Flat, reserve a seat, print the invoice, or
-            manage an existing passenger booking.
+            Search the timetable, book a seat, cancel a booking, or look up a passenger by email.
           </p>
-
-          <div className="stats-row" aria-label="Booking system highlights">
-            <div>
-              <strong>120</strong>
-              <span>schedule days</span>
-            </div>
-            <div>
-              <strong>6</strong>
-              <span>destinations</span>
-            </div>
-            <div>
-              <strong>Live</strong>
-              <span>seat inventory</span>
-            </div>
-          </div>
+          <p className="hero-note">
+            The search uses real dates and the weekly routes are repeated for the loaded schedule.
+          </p>
         </div>
 
         <form className="panel search-panel" onSubmit={searchFlights}>
           <div className="panel-heading">
             <div>
-              <p className="eyebrow">Search</p>
-              <h2>Find a scheduled flight</h2>
+              <p className="eyebrow">Search flights</p>
+              <h2>Choose a route and date range</h2>
             </div>
             <span>{loading ? "Updating" : `${visibleSchedules.length} results`}</span>
           </div>
@@ -473,9 +449,13 @@ export default function Home() {
 
           <div className="route-guide">
             <div>
-              <span className="guide-chip">{currentGuide?.service ?? "Route"}</span>
+              <span className="guide-chip">Route note</span>
               <h3>{currentGuide?.label ?? "Custom route"}</h3>
-              <p>{currentGuide?.frequency ?? "Choose a route served by Dairy Flat Air."}</p>
+              <p>
+                {currentGuide
+                  ? `${currentGuide.frequency}. ${currentGuide.aircraft}.`
+                  : "Choose a route served by Dairy Flat Air."}
+              </p>
               <p className="guide-advice">
                 {currentGuide?.advice ?? "Use the destination buttons below to pick a served route."}
               </p>
@@ -513,7 +493,8 @@ export default function Home() {
       <section className="route-map-band" aria-label="Route map">
         <div>
           <p className="eyebrow">Network</p>
-          <h2>Dairy Flat routes use the assignment aircraft and weekly timetable.</h2>
+          <h2>Weekly route map</h2>
+          <p>All flights are point-to-point services through Dairy Flat Airport.</p>
         </div>
         <Image
           className="route-map"
