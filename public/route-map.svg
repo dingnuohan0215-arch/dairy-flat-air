@@ -1,0 +1,37 @@
+<svg width="900" height="560" viewBox="0 0 900 560" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dairy Flat Air route map">
+  <rect width="900" height="560" rx="8" fill="#eef5f1"/>
+  <path d="M120 84 C176 52 260 60 305 122 C348 180 338 255 383 309 C420 354 494 345 536 388 C583 437 563 510 618 532" stroke="#d9e2de" stroke-width="42" stroke-linecap="round"/>
+  <path d="M646 178 C704 158 770 181 802 231 C835 282 824 346 776 381 C730 414 663 405 632 358 C598 307 591 199 646 178Z" fill="#d9e2de"/>
+  <path d="M455 66 C509 39 593 43 637 86 C677 126 681 188 651 236 C617 290 550 315 498 286 C446 256 410 195 422 139 C428 107 436 77 455 66Z" fill="#d9e2de"/>
+  <path d="M438 278 C406 247 397 197 422 160" stroke="#c7523f" stroke-width="4" stroke-dasharray="10 10" stroke-linecap="round"/>
+  <path d="M438 278 C555 272 637 247 733 264" stroke="#087a7d" stroke-width="5" stroke-linecap="round"/>
+  <path d="M438 278 C520 187 580 128 614 86" stroke="#087a7d" stroke-width="5" stroke-linecap="round"/>
+  <path d="M438 278 C516 325 572 389 610 470" stroke="#087a7d" stroke-width="5" stroke-linecap="round"/>
+  <path d="M438 278 C384 325 326 401 277 471" stroke="#087a7d" stroke-width="5" stroke-linecap="round"/>
+  <path d="M438 278 C404 276 373 272 344 266" stroke="#e0a525" stroke-width="5" stroke-linecap="round"/>
+  <g fill="#182424" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700">
+    <text x="455" y="272">NZNE</text>
+    <text x="745" y="270">YSSY</text>
+    <text x="300" y="257">NZRO</text>
+    <text x="389" y="148">NZGB</text>
+    <text x="590" y="77">NZCI</text>
+    <text x="242" y="506">NZTL</text>
+  </g>
+  <g fill="#087a7d">
+    <circle cx="438" cy="278" r="12"/>
+    <circle cx="733" cy="264" r="10"/>
+    <circle cx="422" cy="160" r="10"/>
+    <circle cx="614" cy="86" r="10"/>
+    <circle cx="610" cy="470" r="10"/>
+    <circle cx="277" cy="471" r="10"/>
+    <circle cx="344" cy="266" r="10"/>
+  </g>
+  <g fill="#5b6866" font-family="Arial, Helvetica, sans-serif" font-size="17">
+    <text x="455" y="298">Dairy Flat</text>
+    <text x="745" y="294">Sydney</text>
+    <text x="286" y="286">Rotorua</text>
+    <text x="348" y="129">Great Barrier</text>
+    <text x="566" y="54">Chatham Islands</text>
+    <text x="226" y="528">Lake Tekapo</text>
+  </g>
+</svg>
