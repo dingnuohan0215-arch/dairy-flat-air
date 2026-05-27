@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { FormEvent, useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 
 type Airport = {
@@ -230,16 +230,9 @@ export default function Home() {
     email: ""
   });
 
-  const visibleSchedules = useMemo(() => schedules, [schedules]);
-  const currentGuide = useMemo(() => routeGuideFor(origin, destination), [origin, destination]);
-  const relatedGuides = useMemo(
-    () => routeGuides.filter((guide) => guide.origin === origin),
-    [origin]
-  );
-  const openSeats = useMemo(
-    () => visibleSchedules.reduce((total, schedule) => total + schedule.seatsLeft, 0),
-    [visibleSchedules]
-  );
+  const currentGuide = routeGuideFor(origin, destination);
+  const relatedGuides = routeGuides.filter((guide) => guide.origin === origin);
+  const openSeats = schedules.reduce((total, schedule) => total + schedule.seatsLeft, 0);
 
   function changeOrigin(nextOrigin: string) {
     setOrigin(nextOrigin);
@@ -251,7 +244,7 @@ export default function Home() {
     }
   }
 
-  async function runSearch(criteria: SearchCriteria) {
+  const runSearch = useCallback(async (criteria: SearchCriteria) => {
     setLoading(true);
     setMessage("");
     setInvoice(null);
@@ -278,7 +271,7 @@ export default function Home() {
     } finally {
       setLoading(false);
     }
-  }
+  }, []);
 
   async function searchFlights(event?: FormEvent) {
     event?.preventDefault();
@@ -382,10 +375,13 @@ export default function Home() {
   }
 
   useEffect(() => {
-    searchFlights();
-    // The first search should run once when the desk opens.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    void runSearch({
+      origin: "NZNE",
+      destination: "YSSY",
+      date1: addDays(1),
+      date2: addDays(28)
+    });
+  }, [runSearch]);
 
   return (
     <main>
@@ -407,7 +403,7 @@ export default function Home() {
               <p className="eyebrow">Search flights</p>
               <h2>Choose a route and date range</h2>
             </div>
-            <span>{loading ? "Updating" : `${visibleSchedules.length} results`}</span>
+            <span>{loading ? "Updating" : `${schedules.length} results`}</span>
           </div>
 
           <div className="field-grid">
@@ -516,14 +512,14 @@ export default function Home() {
               </h2>
             </div>
             <div className="summary-pill">
-              {visibleSchedules.length} flights, {openSeats} open seats
+              {schedules.length} flights, {openSeats} open seats
             </div>
           </div>
 
           {message && <div className="notice">{message}</div>}
 
           <div className="results-grid">
-            {visibleSchedules.map((schedule) => (
+            {schedules.map((schedule) => (
               <button
                 className={`flight-card ${selected?.id === schedule.id ? "selected" : ""} ${
                   schedule.seatsLeft < 1 ? "full" : ""
